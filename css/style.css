@@ -7,14 +7,24 @@
 html, body {
     margin: 0;
     padding: 0;
-    color: #333;
+    color: #807F7A;
 }
 
 body,html{
     background: #ccc;
-    color:#3a3;
-writing-mode: vertical-rl; /* 縦書き（右→左） */
-text-orientation: upright; /* 文字の向きを正立に */
+    color:#9CD089;
+    writing-mode: vertical-rl; /* 縦書き（右→左） */
+    text-orientation: upright; /* 文字の向きを正立に */
+}
+a,
+a:link,
+a:visited,
+a:hover,
+a:active{
+    color:#9CD089;
+}
+a:hover{
+    text-decoration: underline;
 }
 .lp_wrapper{
     max-width:100vw;
@@ -22,9 +32,50 @@ text-orientation: upright; /* 文字の向きを正立に */
 }
 .lp_wrapper{
     display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100vw;
+}
+.lp_wrapper section{
+    flex: 1 1 auto;
+}
+.lp_wrapper section div.contents{
+    position:relative; 
+    z-index:2;
+    border-left:1px solid #9CD089;
+    width:100%;
+    padding:30px;
+}
+.lp_wrapper section div.contents h2{
+    cursor: pointer;
+}
+.lp_wrapper section div.contents *:not(h2){
+    display: none;
+}
+.lp_wrapper section div.contents > *{
+    position:relative;
+    z-index:2;
 }
 .lp_wrapper section .bgimage{
     position: fixed;
     bottom:0;
-    width:70%;
+    top:0;
+    left:0;
+    right: 0;
+    z-index:1;
+}
+.lp_wrapper section .bgimage img{
+    object-fit: cover;
+    object-position:center;
+    width: 100%;
+    height: 100%;
+}
+@media screen and (max-width: 767px) {
+    body,html{
+        writing-mode: initial; /* 縦書き（右→左） */
+        text-orientation: initial; /* 文字の向きを正立に */
+    }
+    .lp_wrapper{
+        flex-direction: row;
+    }
 }
