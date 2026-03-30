@@ -3,15 +3,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap");
 
 *,*::before,*::after{box-sizing:border-box}*{margin:0}@media (prefers-reduced-motion:no-preference){html{interpolate-size:allow-keywords}}body{line-height:1.5;-webkit-font-smoothing:antialiased}img,picture,video,canvas,svg{display:block;max-width:100%}input,button,textarea,select{font:inherit}p,h1,h2,h3,h4,h5,h6{overflow-wrap:break-word}p{text-wrap:pretty}h1,h2,h3,h4,h5,h6{text-wrap:balance}#root,#__next{isolation:isolate}
+h1,h2,h3,h4,h5,h6{
+     font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: normal;
+}
 
 html, body {
     margin: 0;
     padding: 0;
+     font-family: "Plus Jakarta Sans", sans-serif;
+     font-weight:300;
 }
 
 body,html{
     background: #807F7A;
     color:#9CD089;
+    letter-spacing: -0.3em;
 }
 ul{
     list-style: none;
@@ -34,7 +41,8 @@ a:hover{
     overflow: hidden;
 }
 .lp_wrapper{
-    display: grid;
+    display: flex;
+    flex-direction:column;
     position: relative;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     width: 100%;
@@ -43,27 +51,24 @@ a:hover{
     writing-mode: vertical-rl; /* 縦書き（右→左） */
     text-orientation: upright; /* 文字の向きを正立に */
 }
-.lp_wrapper.expand_1{
-    grid-template-rows: 5fr 1fr 1fr 1fr 1fr;
+.lp_wrapper section{
+    flex-basis: 0;
+    flex: 1 1 auto;
+    transition:0.5s;
+    max-width:100%;
 }
-.lp_wrapper.expand_2{
-    grid-template-rows: 1fr 5fr 1fr 1fr 1fr;
+.lp_wrapper section.unactive{
+    max-width:10%;
 }
-.lp_wrapper.expand_3{
-    grid-template-rows: 1fr 1fr 5fr 1fr 1fr;
-}
-.lp_wrapper.expand_4{
-    grid-template-rows: 1fr 1fr 1fr 5fr 1fr;
-}
-.lp_wrapper.expand_5{
-    grid-template-rows: 1fr 1fr 1fr 1fr 5fr;
+.lp_wrapper section.active{
+    flex: 1 1 auto;
 }
 .lp_wrapper section{
     transition: 0.5s;
 }
 .lp_wrapper section div.contents{
     position:relative;
-    z-index:2;
+    z-index:3;
     border-left:1px solid #9CD089;
     width:100%;
     padding:30px;
@@ -80,7 +85,7 @@ a:hover{
 }
 .lp_wrapper section div.contents > *{
     position:relative;
-    z-index:2;
+    z-index:3;
 }
 .lp_wrapper section .bgimage{
     display: none;
@@ -90,6 +95,12 @@ a:hover{
     left:0;
     right: 0;
     z-index:1;
+}
+.lp_wrapper section:not(#main) .bgimage{
+    right: 20vw;
+}
+.lp_wrapper section .bgimage.visible{
+    z-index:2;
 }
 .lp_wrapper section.active .bgimage{
     display: block;
@@ -109,17 +120,35 @@ a:hover{
         overflow: visible;
         width: auto;
         height: auto;
-        writing-mode: initial; /* 縦書き（右→左） */
-        text-orientation: initial; /* 文字の向きを正立に */
+        transition: grid-template-columns 0.5s ease;
+        writing-mode: initial;
+        text-orientation: initial;
+        flex-direction: row;
     }
     .lp_wrapper section{
         border-top:1px solid #9CD089;
         border-left:none;
-        width:100%;
+        width: 100%;
+        letter-spacing: 0.3em;
+    }
+    .lp_wrapper .contents section {
+        width: 100%;
     }
     .lp_wrapper section div.contents{
         border-top:1px solid #9CD089;
         border-left:none;
+    }
+    .lp_wrapper section div.contents .contents_inner{
+        width: 100%;
+    }
+    
+    .active .lp_wrapper section.unactive{
+        max-width:unset;
+    }
+    
+    .lp_wrapper section.active,
+    .lp_wrapper section.unactive{
+        max-width:unset;
     }
 }
 

@@ -6,25 +6,38 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css" class="href">
     <!-- jQuery 3.7.1 (minified) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova:ital,wght@0,400..700;1,400..700&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
     <script>
         $(function(){
-            $('.lp_wrapper section .contents').on({
+            $('.lp_wrapper section:not([class]) .contents h2,.lp_wrapper section[class=""] .contents h2').on({
             mouseenter: function () {
-                $(this).siblings('.bgimage').stop(true, true).fadeIn(300);
-                console.log("123");
+                $(this).parent().siblings('.bgimage:not(.visible)').stop(true, true).fadeIn(300);
             },
             mouseleave: function () {
-                $(this).siblings('.bgimage').stop(true, true).fadeOut(300);
+                $(this).parent().siblings('.bgimage:not(.visible)').stop(true, true).fadeOut(300);
             }
             });
 
             $(".lp_wrapper section .contents h2").on("click",function(){
                 $(".lp_wrapper section .contents_inner").fadeOut();
-                $(this).siblings(".contents_inner").fadeIn();
+                if($(this).parents("section").hasClass("active")) {
+                    $(".lp_wrapper section .bgimage.visible").removeClass('visible');
+                    $(this).parents("section").removeClass("active").siblings().removeClass("active").removeClass("unactive");
+                }else{
+                    $(".lp_wrapper section .bgimage.visible").removeClass('visible');
+                    $(this).parents("section").removeClass("unactive").addClass("active").siblings().removeClass("active").addClass("unactive");
+                    $(this).siblings(".contents_inner").fadeIn();
+                    $(this).parent().siblings('.bgimage').addClass('visible');
+                }
+                
             });
         });
     </script>
@@ -32,7 +45,7 @@
 <body>
     
     <div class="lp_wrapper">
-        <section id="main" class="active">
+        <section id="main">
             <div class="contents">
                 <h1></h1>
                 <ul>
@@ -51,7 +64,7 @@
         <section id="sec01">
             <div class="contents">
                 <h2>SHOP</h2>
-                <div class="contents_inner">
+                <div class="contents_inner tategaki">
                     <p>テストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト<br>
                         テストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト
                     </p>
@@ -64,7 +77,7 @@
         <section id="sec02">
             <div class="contents">
                 <h2>CAFE</h2>
-                <div class="contents_inner">
+                <div class="contents_inner tategaki">
                     <p>テストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト<br>
                         テストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト
                     </p>
@@ -77,7 +90,7 @@
         <section id="sec03">
             <div class="contents">
                 <h2>PERFUMERY</h2>
-                <div class="contents_inner">
+                <div class="contents_inner tategaki">
                     <p>テストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト<br>
                         テストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト
                     </p>
@@ -90,7 +103,7 @@
         <section id="sec04">
             <div class="contents">
                 <h2>GALLERY</h2>
-                <div class="contents_inner">
+                <div class="contents_inner tategaki">
                     <p>テストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト<br>
                         テストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト
                     </p>
