@@ -7,14 +7,15 @@
 html, body {
     margin: 0;
     padding: 0;
-    color: #807F7A;
 }
 
 body,html{
-    background: #ccc;
+    background: #807F7A;
     color:#9CD089;
-    writing-mode: vertical-rl; /* 縦書き（右→左） */
-    text-orientation: upright; /* 文字の向きを正立に */
+}
+ul{
+    list-style: none;
+    padding:0;
 }
 a,
 a:link,
@@ -22,25 +23,46 @@ a:visited,
 a:hover,
 a:active{
     color:#9CD089;
+    text-decoration: none;
+    transition: 0.3s;
 }
 a:hover{
-    text-decoration: underline;
+    background-color: #9CD08933;
 }
 .lp_wrapper{
     max-width:100vw;
     overflow: hidden;
 }
 .lp_wrapper{
-    display: flex;
+    display: grid;
     position: relative;
-    flex-direction: column;
-    width: 100vw;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+    height:100%;
+    transition: grid-template-columns 0.5s ease;
+    writing-mode: vertical-rl; /* 縦書き（右→左） */
+    text-orientation: upright; /* 文字の向きを正立に */
+}
+.lp_wrapper.expand_1{
+    grid-template-rows: 5fr 1fr 1fr 1fr 1fr;
+}
+.lp_wrapper.expand_2{
+    grid-template-rows: 1fr 5fr 1fr 1fr 1fr;
+}
+.lp_wrapper.expand_3{
+    grid-template-rows: 1fr 1fr 5fr 1fr 1fr;
+}
+.lp_wrapper.expand_4{
+    grid-template-rows: 1fr 1fr 1fr 5fr 1fr;
+}
+.lp_wrapper.expand_5{
+    grid-template-rows: 1fr 1fr 1fr 1fr 5fr;
 }
 .lp_wrapper section{
-    flex: 1 1 auto;
+    transition: 0.5s;
 }
 .lp_wrapper section div.contents{
-    position:relative; 
+    position:relative;
     z-index:2;
     border-left:1px solid #9CD089;
     width:100%;
@@ -49,20 +71,28 @@ a:hover{
 .lp_wrapper section div.contents h2{
     cursor: pointer;
 }
-.lp_wrapper section div.contents *:not(h2){
+.lp_wrapper section div.contents .contents_inner{
+    width: 0;
     display: none;
+}
+.lp_wrapper section.active .contents_inner{
+    width: auto;
 }
 .lp_wrapper section div.contents > *{
     position:relative;
     z-index:2;
 }
 .lp_wrapper section .bgimage{
+    display: none;
     position: fixed;
     bottom:0;
     top:0;
     left:0;
     right: 0;
     z-index:1;
+}
+.lp_wrapper section.active .bgimage{
+    display: block;
 }
 .lp_wrapper section .bgimage img{
     object-fit: cover;
@@ -72,10 +102,24 @@ a:hover{
 }
 @media screen and (max-width: 767px) {
     body,html{
+    }
+    .lp_wrapper{
+        display: block;
+        position: relative;
+        overflow: visible;
+        width: auto;
+        height: auto;
         writing-mode: initial; /* 縦書き（右→左） */
         text-orientation: initial; /* 文字の向きを正立に */
     }
-    .lp_wrapper{
-        flex-direction: row;
+    .lp_wrapper section{
+        border-top:1px solid #9CD089;
+        border-left:none;
+        width:100%;
+    }
+    .lp_wrapper section div.contents{
+        border-top:1px solid #9CD089;
+        border-left:none;
     }
 }
+
