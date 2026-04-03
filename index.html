@@ -17,25 +17,36 @@
 
     <script>
         $(function(){
+            $('.lp_wrapper section#main .bgimage').fadeIn("fast");
+            let bgChangable = false;
+            setTimeout(()=>{
+                bgChangable = true;
+                $('.lp_wrapper section#main .bgimage').fadeOut("slow");
+            },2000);
             $('.lp_wrapper section:not([class]) .contents h2,.lp_wrapper section[class=""] .contents h2').on({
             mouseenter: function () {
-                $(this).parent().siblings('.bgimage:not(.visible)').stop(true, true).fadeIn(300);
+                console.log(bgChangable);
+                if(bgChangable){
+                    $(this).siblings('.bgimage:not(.visible)').stop(true, true).fadeIn(300);
+                }
             },
             mouseleave: function () {
-                $(this).parent().siblings('.bgimage:not(.visible)').stop(true, true).fadeOut(300);
+                if(bgChangable){
+                   $(this).siblings('.bgimage:not(.visible)').stop(true, true).fadeOut(300);
+                }
             }
             });
 
             $(".lp_wrapper section .contents h2").on("click",function(){
                 $(".lp_wrapper section .contents_inner").fadeOut();
                 if($(this).parents("section").hasClass("active")) {
-                    $(".lp_wrapper section .bgimage.visible").removeClass('visible');
+                    $(".lp_wrapper section .bgimage.visible").removeClass('visible').fadeOut(300);
                     $(this).parents("section").removeClass("active").siblings().removeClass("active").removeClass("unactive");
                 }else{
-                    $(".lp_wrapper section .bgimage.visible").removeClass('visible');
+                    $(".lp_wrapper section .bgimage.visible").removeClass('visible').fadeOut(300);
                     $(this).parents("section").removeClass("unactive").addClass("active").siblings().removeClass("active").addClass("unactive");
                     $(this).siblings(".contents_inner").fadeIn();
-                    $(this).parent().siblings('.bgimage').addClass('visible');
+                    $(this).siblings('.bgimage').addClass('visible');
                 }
                 
             });
@@ -50,7 +61,7 @@
                 <h1></h1>
                 <ul>
                     <li><a href="">TOP</a></li>
-                    <li><a href="">PHOTOGRAPHY</a></li>
+                    <li><a href="">PHILOSOPHY</a></li>
                     <li><a href="">NEWS</a></li>
                     <li><a href="">RECORD</a></li>
                     <li><a href="">ACCESS</a></li>
@@ -63,54 +74,56 @@
         </section>
         <section id="sec01">
             <div class="contents">
-                <h2>SHOP</h2>
+                <h2>SALON</h2>
                 <div class="contents_inner tategaki">
-                    <p>テストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト<br>
-                        テストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト
-                    </p>
+                    <h3>Apothecary Salon｜魅⼒を醸すサロン</h3>
+                    <p>健やかで美しい⽪膚を保つためのライフスタイルを提案するサロン。<br>
+                        ブランドの世界観を感じていただける空間で、<br>
+                        OSAJIのスキンケアアイテムやOSAJIがセレクトする暮らしのアイテムを展開いたします</p>
                 </div>
-            </div>
             <div class="bgimage">
                 <img src="./images/image002.jpg" alt="">
+            </div>
             </div>
         </section>
         <section id="sec02">
             <div class="contents">
-                <h2>CAFE</h2>
+                <h2>BAR</h2>
                 <div class="contents_inner tategaki">
-                    <p>テストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト<br>
-                        テストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト
+                    <h3>Ferment Bar｜善⽟菌を醸す⾷体験</h3>
+                    <p>「発酵」をテーマにした⾷体験をお楽しみいただけるカウンターエリア。<br><br>
+ブランドのシグネチャードリンクである「⽢酒」をアップデートした「⽢酒スムージー」や⽶粉を使⽤した焼菓⼦等、⼼も⾝体も健やかであるためのOSAJIによる⾷養⽣を提案いたします。
                     </p>
                 </div>
-            </div>
             <div class="bgimage">
                 <img src="./images/image003.jpg" alt="">
+            </div>
             </div>
         </section>
         <section id="sec03">
             <div class="contents">
-                <h2>PERFUMERY</h2>
+                <h2>LAB</h2>
                 <div class="contents_inner tategaki">
-                    <p>テストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト<br>
-                        テストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト
-                    </p>
+                    <h3>Scent Lab｜⾹りを醸す部屋</h3>
+                    <p>ホームフレグランス調⾹専⾨店「kako（家⾹）」による京都店限定の調⾹体験。<br><br>
+                    ”⾹り”を通した精神調律、そして「お匙 京都」で過ごした時間を⽇常でも味わっていただくための”家の⾹り”を調⾹し、線⾹をつくるワークショップを実施いたします。</p>
                 </div>
-            </div>
             <div class="bgimage">
                 <img src="./images/image004.jpg" alt="">
+            </div>
             </div>
         </section>
         <section id="sec04">
             <div class="contents">
                 <h2>GALLERY</h2>
                 <div class="contents_inner tategaki">
-                    <p>テストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト<br>
-                        テストテキストテストテキストテストテキストテストテキストテストテキストテストテキストテストテキスト
-                    </p>
+                    <h3>Cultivate Gallery｜美意識を醸すギャラリー</h3>
+                    <p>OSAJIがキュレーションする、ブランド初のギャラリー。<br>
+                    アート作品から⼯芸品まで、展⽰を通し、訪れた⼈々が⾃分⾃⾝の”美意識”に向き合い、より豊かな暮らしへのヒントを得るための出合いをつくります。</p>
                 </div>
-            </div>
             <div class="bgimage">
                 <img src="./images/image005.jpg" alt="">
+            </div>
             </div>
         </section>
     </div>

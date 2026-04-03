@@ -58,7 +58,7 @@ a:hover{
     max-width:100%;
 }
 .lp_wrapper section.unactive{
-    max-width:10%;
+    max-width: 7rem;
 }
 .lp_wrapper section#main{
     max-width: unset;
@@ -75,43 +75,49 @@ a:hover{
     z-index:3;
     border-right:1px solid #9CD089;
     width:100%;
-    padding:30px;
+    padding: 0;
 }
-.lp_wrapper section#main div.contents{
+.lp_wrapper section div.contents:after{
+    content:"";
+    position: absolute;
+    right: 0;
+    top:0;
+    bottom:0;
+    border-right:1px solid #9CD089;
+}
+.lp_wrapper section#main div.contents:after{
+    content:"";
     border-right:none;
 }
 .lp_wrapper section div.contents h2{
     cursor: pointer;
+    height: fit-content;
+    padding: 2rem 1rem;
+}
+.lp_wrapper section div.contents h3{
+    letter-spacing:0.02;
 }
 .lp_wrapper section div.contents .contents_inner{
-    width: 0;
     display: none;
+    padding: 2rem 0 2rem 2rem;
 }
 .lp_wrapper section.active .contents_inner{
     width: auto;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.07em;
 }
 .lp_wrapper section div.contents > *{
-    position:relative;
-    z-index:3;
+    z-index: 3;
 }
 .lp_wrapper section .bgimage{
     display: none;
-    position: fixed;
-    bottom:0;
-    top:0;
-    left:0;
-    right: 0;
     z-index:1;
+    position: absolute;
 }
 .lp_wrapper section:not(#main) .bgimage{
-    right: 20vw;
+    z-index: 1;
 }
 .lp_wrapper section .bgimage.visible{
     z-index:2;
-}
-.lp_wrapper section.active .bgimage{
-    display: block;
 }
 .lp_wrapper section .bgimage img{
     object-fit: cover;
@@ -119,19 +125,32 @@ a:hover{
     width: 100%;
     height: 100%;
 }
+.lp_wrapper section#main ul{
+    padding: 2rem;
+    line-height: 2;
+}
+.lp_wrapper section#main h1{
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+.lp_wrapper section#main .bgimage{
+    left: 0;
+    width:100vw;
+    position: fixed;
+    z-index: 1;
+}
+
 @media screen and (max-width: 767px) {
     body,html{
     }
     .lp_wrapper{
-        display: block;
         position: relative;
         overflow: visible;
-        width: auto;
-        height: auto;
         transition: grid-template-columns 0.5s ease;
         writing-mode: initial;
         text-orientation: initial;
-        flex-direction: row;
+        flex-direction: column;
     }
     .lp_wrapper section{
         border-left:none;
@@ -148,8 +167,13 @@ a:hover{
     .lp_wrapper section#main div.contents{
         border-top:none;
     }
+    .lp_wrapper section#main ul{
+        padding: 3vw;
+        font-size:0.9rem;
+    }
     .lp_wrapper section div.contents .contents_inner{
         width: 100%;
+        padding: 0rem 5vw 5vw;
     }
     
     .active .lp_wrapper section.unactive{
@@ -159,6 +183,9 @@ a:hover{
     .lp_wrapper section.active,
     .lp_wrapper section.unactive{
         max-width:unset;
+    }
+    .lp_wrapper section:not(#main) .bgimage{
+        position:relative;
     }
 }
 
