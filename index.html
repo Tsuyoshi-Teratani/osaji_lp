@@ -17,36 +17,37 @@
 
     <script>
         $(function(){
-            $('.lp_wrapper section#main .bgimage').fadeIn("fast");
+            $('.lp_wrapper section#main .bgimage').fadeIn(300);
             let bgChangable = false;
             setTimeout(()=>{
                 bgChangable = true;
                 $('.lp_wrapper section#main .bgimage').fadeOut("slow");
             },2000);
             $('.lp_wrapper section:not([class]) .contents h2,.lp_wrapper section[class=""] .contents h2').on({
-            mouseenter: function () {
-                console.log(bgChangable);
-                if(bgChangable){
-                    $(this).siblings('.bgimage:not(.visible)').stop(true, true).fadeIn(300);
+                mouseenter: function () {
+                    if(bgChangable){
+                       // $(this).siblings('.bgimage:not(.visible)').stop(true, true).fadeIn(300);
+                        $(this).siblings('.bgimage:not(.visible)').addClass('bghover');
+                    }
+                },
+                mouseleave: function () {
+                    if(bgChangable){
+                       // $(this).siblings('.bgimage:not(.visible)').stop(true, true).fadeOut(300);
+                        $(this).siblings('.bgimage:not(.visible)').removeClass('bghover');
+                    }
                 }
-            },
-            mouseleave: function () {
-                if(bgChangable){
-                   $(this).siblings('.bgimage:not(.visible)').stop(true, true).fadeOut(300);
-                }
-            }
             });
 
             $(".lp_wrapper section .contents h2").on("click",function(){
                 $(".lp_wrapper section .contents_inner").fadeOut();
                 if($(this).parents("section").hasClass("active")) {
-                    $(".lp_wrapper section .bgimage.visible").removeClass('visible').fadeOut(300);
+                    $(".lp_wrapper section .bgimage.visible").removeClass('visible');
                     $(this).parents("section").removeClass("active").siblings().removeClass("active").removeClass("unactive");
                 }else{
-                    $(".lp_wrapper section .bgimage.visible").removeClass('visible').fadeOut(300);
+                    $(".lp_wrapper section .bgimage.visible").removeClass('visible');
                     $(this).parents("section").removeClass("unactive").addClass("active").siblings().removeClass("active").addClass("unactive");
                     $(this).siblings(".contents_inner").fadeIn();
-                    $(this).siblings('.bgimage').addClass('visible');
+                    $(this).siblings('.bgimage').addClass('visible').removeClass('bghover');
                 }
                 
             });

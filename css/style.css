@@ -91,6 +91,7 @@ a:hover{
 }
 .lp_wrapper section div.contents h2{
     cursor: pointer;
+    position: relative;
     height: fit-content;
     padding: 2rem 1rem;
 }
@@ -109,15 +110,25 @@ a:hover{
     z-index: 3;
 }
 .lp_wrapper section .bgimage{
-    display: none;
+    opacity: 0;
     z-index:1;
     position: absolute;
+    transition: 0.3s;
 }
 .lp_wrapper section:not(#main) .bgimage{
-    z-index: 1;
+    z-index: 2;
+    right: 0;
 }
-.lp_wrapper section .bgimage.visible{
+.lp_wrapper section:not(#main)  .bgimage.visible{
+    right: auto;
     z-index:2;
+    opacity: 1;
+}
+.lp_wrapper section div.contents{
+    overflow: hidden;
+}
+.lp_wrapper section .bgimage.bghover{
+    opacity: 1;
 }
 .lp_wrapper section .bgimage img{
     object-fit: cover;
@@ -163,6 +174,9 @@ a:hover{
     .lp_wrapper section div.contents{
         border-top:1px solid #9CD089;
         border-left:none;
+    }
+    .lp_wrapper section div.contents:has('.bghover'){
+        overflow: hidden;
     }
     .lp_wrapper section#main div.contents{
         border-top:none;
