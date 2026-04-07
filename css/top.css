@@ -48,8 +48,8 @@ a:hover{
     width: 100%;
     height:100%;
     transition: grid-template-columns 0.5s ease;
-    writing-mode: vertical-rl; /* ç¸¦æ›¸ãï¼ˆå³â†’å·¦ï¼‰ */
-    text-orientation: upright; /* æ–‡å­—ã®å‘ãã‚’æ­£ç«‹ã« */
+    writing-mode: vertical-rl;
+    text-orientation: upright;
 }
 .lp_wrapper section{
     flex-basis: 0;
